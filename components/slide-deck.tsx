@@ -68,21 +68,21 @@ function ImageModal({ src, alt, onClose }: { src: string; alt?: string; onClose:
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
-      <div className="relative w-full max-w-6xl h-[80vh]" onClick={(e) => e.stopPropagation()}>
+      <div className="relative w-full max-w-7xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 z-50 bg-slate-900/60 text-white rounded-full p-2 hover:bg-slate-800"
+          className="absolute -top-12 right-0 z-50 bg-white/10 backdrop-blur-sm text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/20 transition-all border border-white/20 hover:scale-110"
           aria-label="Close preview"
         >
-          ✕
+          <span className="text-xl font-light">×</span>
         </button>
 
-        <div className="relative w-full h-full rounded-md overflow-hidden bg-slate-900">
+        <div className="relative w-full h-full rounded-xl overflow-hidden bg-slate-900/50 backdrop-blur-md border border-white/10 shadow-2xl">
           <Image src={src} alt={alt || ''} fill className="object-contain" priority />
         </div>
       </div>
@@ -274,10 +274,10 @@ function TitleSlide() {
     <Slide>
       <div className="text-center space-y-8">
         <div className="space-y-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight text-balance">
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent tracking-tight text-balance">
             Software Engineer | Power Platform
           </h1>
-          <p className="text-xl md:text-2xl text-blue-400 font-medium">
+          <p className="text-xl md:text-2xl text-blue-400 font-semibold">
             Engineering Enterprise-Grade Solutions
           </p>
         </div>
@@ -295,13 +295,13 @@ function TitleSlide() {
             </p>
 
             <div className="flex items-center justify-center gap-4 mt-3">
-              <a href="#" aria-label="LinkedIn" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <a href="#" aria-label="LinkedIn" className="text-slate-400 hover:text-blue-400 transition-all duration-300 hover:scale-110">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" aria-label="GitHub" className="text-slate-400 hover:text-slate-200 transition-colors">
+              <a href="#" aria-label="GitHub" className="text-slate-400 hover:text-slate-200 transition-all duration-300 hover:scale-110">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="#" aria-label="Email" className="text-slate-400 hover:text-amber-400 transition-colors">
+              <a href="#" aria-label="Email" className="text-slate-400 hover:text-amber-400 transition-all duration-300 hover:scale-110">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -312,32 +312,32 @@ function TitleSlide() {
             <CareerTimer startDate={"2020-06-01"} />
 
             <div className="flex items-center justify-center gap-6 mt-16">
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-lg bg-yellow-500/20 flex items-center justify-center border border-yellow-500/30">
+          <div className="flex flex-col items-center gap-2 group cursor-pointer">
+            <div className="w-14 h-14 rounded-lg bg-yellow-500/20 flex items-center justify-center border border-yellow-500/30 transition-all duration-300 group-hover:bg-yellow-500/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-500/30">
               <BarChart3 className="w-7 h-7 text-yellow-400" />
             </div>
             <span className="text-xs text-slate-400">Power BI</span>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-lg bg-purple-500/20 flex items-center justify-center border border-purple-500/30">
+          <div className="flex flex-col items-center gap-2 group cursor-pointer">
+            <div className="w-14 h-14 rounded-lg bg-purple-500/20 flex items-center justify-center border border-purple-500/30 transition-all duration-300 group-hover:bg-purple-500/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/30">
               <Layers className="w-7 h-7 text-purple-400" />
             </div>
             <span className="text-xs text-slate-400">Power Apps</span>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-lg bg-green-500/20 flex items-center justify-center border border-green-500/30">
+          <div className="flex flex-col items-center gap-2 group cursor-pointer">
+            <div className="w-14 h-14 rounded-lg bg-green-500/20 flex items-center justify-center border border-green-500/30 transition-all duration-300 group-hover:bg-green-500/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/30">
               <Zap className="w-7 h-7 text-green-400" />
             </div>
             <span className="text-xs text-slate-400">Power Automate</span>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-lg bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
+          <div className="flex flex-col items-center gap-2 group cursor-pointer">
+            <div className="w-14 h-14 rounded-lg bg-blue-500/20 flex items-center justify-center border border-blue-500/30 transition-all duration-300 group-hover:bg-blue-500/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/30">
               <Code className="w-7 h-7 text-blue-400" />
             </div>
             <span className="text-xs text-slate-400">C# / .NET</span>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-lg bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30">
+          <div className="flex flex-col items-center gap-2 group cursor-pointer">
+            <div className="w-14 h-14 rounded-lg bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30 transition-all duration-300 group-hover:bg-cyan-500/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-cyan-500/30">
               <Cloud className="w-7 h-7 text-cyan-400" />
             </div>
             <span className="text-xs text-slate-400">Azure</span>
@@ -844,22 +844,22 @@ function ThankYouSlide() {
           <p className="text-slate-400 text-sm uppercase tracking-wider">Contact</p>
           <div className="flex items-center justify-center gap-6">
             <a href="#" className="flex flex-col items-center gap-2 group">
-              <div className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all">
-                <Mail className="w-5 h-5 text-slate-400 group-hover:text-blue-400" />
+              <div className="w-12 h-12 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700 flex items-center justify-center group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/30">
+                <Mail className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
               </div>
-              <span className="text-xs text-slate-500">Email</span>
+              <span className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors">Email</span>
             </a>
             <a href="#" className="flex flex-col items-center gap-2 group">
-              <div className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all">
-                <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-blue-400" />
+              <div className="w-12 h-12 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700 flex items-center justify-center group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/30">
+                <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
               </div>
-              <span className="text-xs text-slate-500">LinkedIn</span>
+              <span className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors">LinkedIn</span>
             </a>
             <a href="#" className="flex flex-col items-center gap-2 group">
-              <div className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all">
-                <Github className="w-5 h-5 text-slate-400 group-hover:text-blue-400" />
+              <div className="w-12 h-12 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700 flex items-center justify-center group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/30">
+                <Github className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
               </div>
-              <span className="text-xs text-slate-500">GitHub</span>
+              <span className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors">GitHub</span>
             </a>
           </div>
         </div>
@@ -883,29 +883,29 @@ function PowerBICaseStudySlide() {
         <div className="grid md:grid-cols-2 gap-8 items-start">
           {/* Left: Description */}
           <div className="space-y-4">
-            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6">
+            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
               <h3 className="text-lg font-semibold text-blue-400 mb-2">The Challenge</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 <strong className="text-white">Resolved a complex Data Granularity Mismatch</strong> (Daily Sales vs. Monthly Targets). Executed rigorous ETL with <strong className="text-blue-400">Power Query</strong> to sanitize raw feeds and fix critical data type and locale inconsistencies.
               </p>
             </div>
 
-            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6">
+            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10">
               <h3 className="text-lg font-semibold text-emerald-400 mb-2">The Solution</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 <strong className="text-white">Architected a high-performance Star Schema (Snowflake)</strong> to unify tables. Developed <strong className="text-emerald-400">Advanced DAX</strong> for Time Intelligence (YoY) and dynamic <strong className="text-emerald-400">Target Achievement</strong> tracking.
               </p>
             </div>
 
-            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6">
+            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/10">
               <h3 className="text-lg font-semibold text-yellow-400 mb-2">The Result</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Deployed a strategic Executive Dashboard revealing <strong className="text-white">52% YoY Revenue Growth</strong>. Empowered stakeholders with actionable insights into Sales Performance by <strong className="text-yellow-400">Category</strong> and <strong className="text-yellow-400">Geography</strong>.
               </p>
             </div>
 
-            <div className="mt-4">
-              <div className="text-xs text-slate-400 uppercase mb-2">Tech Stack</div>
+            <div className="mt-6 pt-4 border-t border-slate-700/50">
+              <div className="text-xs text-slate-400 uppercase mb-3 font-semibold tracking-wider">Tech Stack</div>
               <div className="flex flex-wrap gap-2">
                 <TechBadge>Power BI</TechBadge>
                 <TechBadge>DAX</TechBadge>
@@ -918,36 +918,52 @@ function PowerBICaseStudySlide() {
 
           {/* Right: Images from public/ (click to expand) */}
           <div className="space-y-4">
-            <div
-              className="relative w-full h-64 md:h-80 border-2 border-dashed border-slate-600 rounded-lg overflow-hidden bg-slate-800/50 cursor-pointer"
-              role="button"
-              tabIndex={0}
-              onClick={() => setModalSrc('/diagram-powerbi.jpeg')}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalSrc('/diagram-powerbi.jpeg') }}
-            >
-              <Image
-                src="/diagram-powerbi.jpeg"
-                alt="Data Model Diagram"
-                fill
-                className="object-cover"
-                priority
-              />
+            <div className="group relative">
+              <div
+                className="relative w-full h-64 md:h-80 border-2 border-slate-600/50 rounded-xl overflow-hidden bg-slate-800/30 cursor-pointer transition-all duration-300 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/20 hover:scale-[1.02]"
+                role="button"
+                tabIndex={0}
+                onClick={() => setModalSrc('/diagram-powerbi.jpeg')}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalSrc('/diagram-powerbi.jpeg') }}
+              >
+                <Image
+                  src="/diagram-powerbi.jpeg"
+                  alt="Data Model Diagram"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-3 left-3 right-3 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2">
+                  <Search className="w-4 h-4" />
+                  Click to view full size
+                </div>
+              </div>
+              <p className="text-xs text-slate-400 mt-2 text-center">Data Model Diagram</p>
             </div>
 
-            <div
-              className="relative w-full h-64 md:h-80 border-2 border-dashed border-slate-600 rounded-lg overflow-hidden bg-slate-800/50 cursor-pointer"
-              role="button"
-              tabIndex={0}
-              onClick={() => setModalSrc('/dashboard-powerbi.jpeg')}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalSrc('/dashboard-powerbi.jpeg') }}
-            >
-              <Image
-                src="/dashboard-powerbi.jpeg"
-                alt="Final Dashboard Screenshot"
-                fill
-                className="object-cover"
-                priority
-              />
+            <div className="group relative">
+              <div
+                className="relative w-full h-64 md:h-80 border-2 border-slate-600/50 rounded-xl overflow-hidden bg-slate-800/30 cursor-pointer transition-all duration-300 hover:border-yellow-500/60 hover:shadow-lg hover:shadow-yellow-500/20 hover:scale-[1.02]"
+                role="button"
+                tabIndex={0}
+                onClick={() => setModalSrc('/dashboard-powerbi.jpeg')}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalSrc('/dashboard-powerbi.jpeg') }}
+              >
+                <Image
+                  src="/dashboard-powerbi.jpeg"
+                  alt="Final Dashboard Screenshot"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-3 left-3 right-3 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2">
+                  <Search className="w-4 h-4" />
+                  Click to view full size
+                </div>
+              </div>
+              <p className="text-xs text-slate-400 mt-2 text-center">Executive Dashboard</p>
             </div>
           </div>
 
@@ -1012,19 +1028,21 @@ export function SlideDeck() {
       {/* Progress bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
         <div 
-          className="h-full bg-blue-500 transition-all duration-300 ease-out"
+          className="h-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 transition-all duration-500 ease-out shadow-lg shadow-blue-500/50"
           style={{ width: `${progress}%` }}
         />
       </div>
 
       {/* Slide counter */}
-      <div className="fixed top-4 right-4 text-slate-500 text-sm font-mono z-50">
+      <div className="fixed top-4 right-4 bg-slate-800/80 backdrop-blur-sm px-3 py-1.5 rounded-full text-slate-300 text-sm font-mono z-50 border border-slate-700/50">
         {currentSlide + 1} / {slides.length}
       </div>
 
       {/* Main slide area */}
       <main className="flex-1 flex items-center justify-center overflow-hidden">
-        <CurrentSlideComponent />
+        <div key={currentSlide} className="animate-in fade-in duration-500 w-full h-full">
+          <CurrentSlideComponent />
+        </div>
       </main>
 
       {/* Navigation controls */}
@@ -1034,22 +1052,22 @@ export function SlideDeck() {
           size="lg"
           onClick={goToPrevious}
           disabled={currentSlide === 0}
-          className="bg-slate-800/80 border-slate-700 text-white hover:bg-slate-700 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+          className="bg-slate-800/90 border-slate-700 text-white hover:bg-slate-700 hover:text-white hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
         >
           <ChevronLeft className="w-5 h-5 mr-1" />
           Previous
         </Button>
         
         {/* Slide dots */}
-        <div className="flex items-center gap-2 px-4">
+        <div className="flex items-center gap-2.5 px-4">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all ${
+              className={`rounded-full transition-all duration-300 ${
                 index === currentSlide 
-                  ? "bg-blue-500 w-6" 
-                  : "bg-slate-600 hover:bg-slate-500"
+                  ? "bg-blue-500 w-8 h-2.5 shadow-lg shadow-blue-500/50" 
+                  : "bg-slate-600 hover:bg-blue-400 w-2.5 h-2.5 hover:scale-125"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -1061,7 +1079,7 @@ export function SlideDeck() {
           size="lg"
           onClick={goToNext}
           disabled={currentSlide === slides.length - 1}
-          className="bg-slate-800/80 border-slate-700 text-white hover:bg-slate-700 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+          className="bg-slate-800/90 border-slate-700 text-white hover:bg-slate-700 hover:text-white hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
         >
           Next
           <ChevronRight className="w-5 h-5 ml-1" />
