@@ -51,6 +51,150 @@ function TechBadge({ children }: { children: React.ReactNode }) {
   )
 }
 
+// Image modal for fullscreen preview
+function ImageModal({ src, alt, onClose }: { src: string; alt?: string; onClose: () => void }) {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = prev
+    }
+  }, [onClose])
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="relative w-full max-w-6xl h-[80vh]" onClick={(e) => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 z-50 bg-slate-900/60 text-white rounded-full p-2 hover:bg-slate-800"
+          aria-label="Close preview"
+        >
+          ✕
+        </button>
+
+        <div className="relative w-full h-full rounded-md overflow-hidden bg-slate-900">
+          <Image src={src} alt={alt || ''} fill className="object-contain" priority />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Career Timer component
+function CareerTimer({ startDate = '2018-06-01' }: { startDate?: string }) {
+  const [time, setTime] = useState({ years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 })
+
+  useEffect(() => {
+    const start = new Date(startDate)
+
+    const compute = () => {
+      const now = new Date()
+
+      let years = now.getFullYear() - start.getFullYear()
+      let months = now.getMonth() - start.getMonth()
+      let days = now.getDate() - start.getDate()
+      let hours = now.getHours() - start.getHours()
+      let minutes = now.getMinutes() - start.getMinutes()
+      let seconds = now.getSeconds() - start.getSeconds()
+
+      if (seconds < 0) {
+        seconds += 60
+        minutes -= 1
+      }
+      if (minutes < 0) {
+        minutes += 60
+        hours -= 1
+      }
+      if (hours < 0) {
+        hours += 24
+        days -= 1
+      }
+
+      if (days < 0) {
+        // borrow days from previous month relative to 'now'
+        const prevMonthLastDay = new Date(now.getFullYear(), now.getMonth(), 0).getDate()
+        days += prevMonthLastDay
+        months -= 1
+      }
+
+      if (months < 0) {
+        months += 12
+        years -= 1
+      }
+
+      setTime({ years, months, days, hours, minutes, seconds })
+    }
+
+    compute()
+    const id = setInterval(compute, 1000)
+    return () => clearInterval(id)
+  }, [startDate])
+
+  const pad = (value: number, len = 2) => String(value).padStart(len, '0')
+
+  return (
+    <div className="w-full flex flex-col items-center justify-center mt-4">
+      <div className="text-xs md:text-sm text-slate-400 uppercase" style={{ letterSpacing: '3px', fontSize: '0.75rem' }}>
+        CODING SINCE
+      </div>
+
+      <div className="mt-2 bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 flex items-center gap-3">
+        <div className="flex items-baseline gap-3 text-white">
+          <div className="flex items-baseline gap-1">
+            <span className="font-mono text-2xl md:text-3xl tabular-nums">{pad(time.years, 2)}</span>
+            <span className="text-xs text-slate-400 opacity-80 ml-1">y</span>
+          </div>
+
+          <div className="text-slate-500 px-2">:</div>
+
+          <div className="flex items-baseline gap-1">
+            <span className="font-mono text-2xl md:text-3xl tabular-nums">{pad(time.months, 2)}</span>
+            <span className="text-xs text-slate-400 opacity-80 ml-1">mo</span>
+          </div>
+
+          <div className="text-slate-500 px-2">:</div>
+
+          <div className="flex items-baseline gap-1">
+            <span className="font-mono text-2xl md:text-3xl tabular-nums">{pad(time.days, 2)}</span>
+            <span className="text-xs text-slate-400 opacity-80 ml-1">d</span>
+          </div>
+
+          <div className="text-slate-500 px-2">:</div>
+
+          <div className="flex items-baseline gap-1">
+            <span className="font-mono text-2xl md:text-3xl tabular-nums">{pad(time.hours)}</span>
+            <span className="text-xs text-slate-400 opacity-80 ml-1">h</span>
+          </div>
+
+          <div className="text-slate-500 px-2">:</div>
+
+          <div className="flex items-baseline gap-1">
+            <span className="font-mono text-2xl md:text-3xl tabular-nums">{pad(time.minutes)}</span>
+            <span className="text-xs text-slate-400 opacity-80 ml-1">m</span>
+          </div>
+
+          <div className="text-slate-500 px-2">:</div>
+
+          <div className="flex items-baseline gap-1">
+            <span className="font-mono text-2xl md:text-3xl tabular-nums">{pad(time.seconds)}</span>
+            <span className="text-xs text-slate-400 opacity-80 ml-1">s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function MermaidDiagram({ chart }: { chart: string }) {
   const mermaidRef = useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -140,21 +284,34 @@ function TitleSlide() {
         
         <div className="h-px w-32 bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto" />
         
-        <div className="space-y-3">
-          <p className="text-2xl md:text-3xl text-slate-200 font-semibold">
-            João Custódio
-          </p>
-          <p className="text-base text-slate-400">
-            São Paulo, Brazil
-          </p>
-          <div className="inline-block">
-            <p className="text-sm text-slate-300 bg-slate-800/60 px-4 py-2 rounded-full border border-slate-700">
-              MBA in Software Engineering (USP) • 5+ Years Experience
+        <div>
+          {/* Top block: Name, Location and Socials */}
+          <div className="space-y-2">
+            <p className="text-3xl md:text-4xl text-slate-200 font-semibold">
+              João Custódio
             </p>
+            <p className="text-base text-slate-400">
+              São Paulo, Brazil
+            </p>
+
+            <div className="flex items-center justify-center gap-4 mt-3">
+              <a href="#" aria-label="LinkedIn" className="text-slate-400 hover:text-blue-400 transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="#" aria-label="GitHub" className="text-slate-400 hover:text-slate-200 transition-colors">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href="#" aria-label="Email" className="text-slate-400 hover:text-amber-400 transition-colors">
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
           </div>
-        </div>
-        
-        <div className="flex items-center justify-center gap-6 pt-8">
+
+          {/* Bottom block: Timer + Tech icons (separated visually) */}
+          <div className="mt-16">
+            <CareerTimer startDate={"2020-06-01"} />
+
+            <div className="flex items-center justify-center gap-6 mt-16">
           <div className="flex flex-col items-center gap-2">
             <div className="w-14 h-14 rounded-lg bg-yellow-500/20 flex items-center justify-center border border-yellow-500/30">
               <BarChart3 className="w-7 h-7 text-yellow-400" />
@@ -186,6 +343,8 @@ function TitleSlide() {
             <span className="text-xs text-slate-400">Azure</span>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </Slide>
   )
@@ -709,6 +868,98 @@ function ThankYouSlide() {
   )
 }
 
+// Slide: Power BI Case Study
+function PowerBICaseStudySlide() {
+  const [modalSrc, setModalSrc] = useState<string | null>(null)
+  return (
+    <Slide>
+      <div className="w-full max-w-6xl">
+        <div className="text-center mb-8">
+          <span className="text-blue-400 text-sm font-semibold uppercase tracking-wider">Dashboard for Brazilian Business</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Power BI Dashboard: Executive Sales & Target Analysis — Brazilian Business</h2>
+          <div className="h-1 w-20 bg-blue-500 mx-auto rounded-full mt-4" />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 items-start">
+          {/* Left: Description */}
+          <div className="space-y-4">
+            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-blue-400 mb-2">The Challenge</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                <strong className="text-white">Resolved a complex Data Granularity Mismatch</strong> (Daily Sales vs. Monthly Targets). Executed rigorous ETL with <strong className="text-blue-400">Power Query</strong> to sanitize raw feeds and fix critical data type and locale inconsistencies.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-emerald-400 mb-2">The Solution</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                <strong className="text-white">Architected a high-performance Star Schema (Snowflake)</strong> to unify tables. Developed <strong className="text-emerald-400">Advanced DAX</strong> for Time Intelligence (YoY) and dynamic <strong className="text-emerald-400">Target Achievement</strong> tracking.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-yellow-400 mb-2">The Result</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Deployed a strategic Executive Dashboard revealing <strong className="text-white">52% YoY Revenue Growth</strong>. Empowered stakeholders with actionable insights into Sales Performance by <strong className="text-yellow-400">Category</strong> and <strong className="text-yellow-400">Geography</strong>.
+              </p>
+            </div>
+
+            <div className="mt-4">
+              <div className="text-xs text-slate-400 uppercase mb-2">Tech Stack</div>
+              <div className="flex flex-wrap gap-2">
+                <TechBadge>Power BI</TechBadge>
+                <TechBadge>DAX</TechBadge>
+                <TechBadge>Power Query</TechBadge>
+                <TechBadge>Data Modeling</TechBadge>
+                <TechBadge>ETL</TechBadge>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Images from public/ (click to expand) */}
+          <div className="space-y-4">
+            <div
+              className="relative w-full h-64 md:h-80 border-2 border-dashed border-slate-600 rounded-lg overflow-hidden bg-slate-800/50 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onClick={() => setModalSrc('/diagram-powerbi.jpeg')}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalSrc('/diagram-powerbi.jpeg') }}
+            >
+              <Image
+                src="/diagram-powerbi.jpeg"
+                alt="Data Model Diagram"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            <div
+              className="relative w-full h-64 md:h-80 border-2 border-dashed border-slate-600 rounded-lg overflow-hidden bg-slate-800/50 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onClick={() => setModalSrc('/dashboard-powerbi.jpeg')}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalSrc('/dashboard-powerbi.jpeg') }}
+            >
+              <Image
+                src="/dashboard-powerbi.jpeg"
+                alt="Final Dashboard Screenshot"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+
+          {modalSrc && (
+            <ImageModal src={modalSrc} alt="Preview" onClose={() => setModalSrc(null)} />
+          )}
+        </div>
+      </div>
+    </Slide>
+  )
+}
+
 const slides = [
   TitleSlide,
   AboutSlide,
@@ -716,6 +967,7 @@ const slides = [
   Project1TechSlide,
   Project2BusinessSlide,
   Project2TechSlide,
+  PowerBICaseStudySlide,
   MethodologySlide,
   ThankYouSlide,
 ]
@@ -748,7 +1000,15 @@ export function SlideDeck() {
   const progress = ((currentSlide + 1) / slides.length) * 100
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col">
+    <div
+      className="min-h-screen bg-slate-900 flex flex-col"
+      style={{
+        backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'><g fill='none' stroke='%23ffffff' stroke-opacity='0.03' stroke-width='0.6'><path d='M30 0 L60 15 L60 37 L30 52 L0 37 L0 15 Z'/></g></svg>")`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: '180px 156px',
+        backgroundBlendMode: 'overlay'
+      }}
+    >
       {/* Progress bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
         <div 
