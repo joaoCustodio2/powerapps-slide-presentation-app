@@ -577,9 +577,9 @@ function Project1BusinessSlide() {
             <div className="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4">
               <Target className="w-7 h-7 text-red-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">1. The Business Problem</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">The Business Problem</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              Management relied on scattered Excel/Email orders. Users frequently ordered outside valid dates, and 'Proportional Grade' calculations had a high manual error rate.
+              Management relied on <strong className="text-white">scattered Excel/Email orders</strong>. Users frequently ordered <strong className="text-red-400">outside valid dates</strong>, and 'Proportional Grade' calculations had a <strong className="text-red-400">high manual error rate</strong>.
             </p>
           </div>
           
@@ -588,9 +588,9 @@ function Project1BusinessSlide() {
             <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
               <Lightbulb className="w-7 h-7 text-blue-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">4. What I Built (Solution)</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">What I Built (Solution)</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              A centralized Canvas App (<span className="text-blue-400 font-mono text-xs">cycle-order-app</span>) with input validation, integrated with Power Automate for batch processing and Excel Scripts for reporting.
+              A <strong className="text-blue-400">centralized Canvas App</strong> (<span className="text-blue-400 font-mono text-xs">cycle-order-app</span>) with <strong className="text-white">input validation</strong>, integrated with <strong className="text-blue-400">Power Automate</strong> for batch processing and Excel Scripts for reporting.
             </p>
           </div>
           
@@ -599,9 +599,9 @@ function Project1BusinessSlide() {
             <div className="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
               <TrendingUp className="w-7 h-7 text-green-400" />
             </div>
-            <h3 className="text-lg font-semibold text-green-400 mb-3 text-center">5. Business Decisions Enabled</h3>
+            <h3 className="text-lg font-semibold text-green-400 mb-3 text-center">Business Decisions Enabled</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              Enabled <strong className="text-green-400">Proactive Demand Planning</strong> instead of reactive error-fixing. Supply chain can now lock forecasts immediately after cycle closure with 100% data trust.
+              Enabled <strong className="text-green-400">Proactive Demand Planning</strong> instead of reactive error-fixing. Supply chain can now <strong className="text-white">lock forecasts immediately</strong> after cycle closure with <strong className="text-green-400">100% data trust</strong>.
             </p>
           </div>
         </div>
@@ -627,7 +627,7 @@ function Project1TechSlide() {
             <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4">
               <Database className="w-7 h-7 text-purple-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">2. The Data Sources</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">The Data Sources</h3>
             <p className="text-slate-300 text-sm leading-relaxed mb-3">
               <strong className="text-purple-400">SharePoint Lists:</strong> Optimized as a relational backend.
             </p>
@@ -641,7 +641,7 @@ function Project1TechSlide() {
             <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
               <Layers className="w-7 h-7 text-blue-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">3. How I Modeled the Data</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">How I Modeled the Data</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
               Implemented a <strong className="text-blue-400">Star Schema</strong> logic. Created a Bridge Table (<span className="text-blue-400 font-mono text-xs">Order_Items</span>) to resolve the Many-to-Many relationship between 'Orders' and 'Products', ensuring historical integrity.
             </p>
@@ -709,9 +709,9 @@ function Project2BusinessSlide() {
             <div className="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4">
               <Target className="w-7 h-7 text-red-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">1. The Business Problem</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">The Business Problem</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              HR spent hours manually validating receipts and calculating age eligibility. High risk of compliance errors (paying ineligible dependents).
+              HR spent hours <strong className="text-red-400">manually validating receipts</strong> and calculating age eligibility. <strong className="text-red-400">High risk of compliance errors</strong> (paying ineligible dependents).
             </p>
           </div>
           
@@ -720,9 +720,9 @@ function Project2BusinessSlide() {
             <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
               <Lightbulb className="w-7 h-7 text-blue-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">4. What I Built (Solution)</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">What I Built (Solution)</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              A Self-Service Portal (<span className="text-blue-400 font-mono text-xs">hr-benefits-portal-app</span>) with <strong className="text-blue-400">Copilot Studio</strong> integration for policy guidance and automated approval workflows.
+              A <strong className="text-blue-400">Self-Service Portal</strong> (<span className="text-blue-400 font-mono text-xs">hr-benefits-portal-app</span>) with <strong className="text-blue-400">Copilot Studio</strong> integration for policy guidance and <strong className="text-white">automated approval workflows</strong>.
             </p>
           </div>
           
@@ -731,9 +731,9 @@ function Project2BusinessSlide() {
             <div className="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 className="w-7 h-7 text-green-400" />
             </div>
-            <h3 className="text-lg font-semibold text-green-400 mb-3 text-center">5. Business Decisions Enabled</h3>
+            <h3 className="text-lg font-semibold text-green-400 mb-3 text-center">Business Decisions Enabled</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
-              Enabled <strong className="text-green-400">Risk-Free Compliance</strong>. HR can now audit the entire process digitally. Fraud reduction decisions are automated via strict validation rules.
+              Enabled <strong className="text-green-400">Risk-Free Compliance</strong>. HR can now <strong className="text-white">audit the entire process digitally</strong>. Fraud reduction decisions are <strong className="text-green-400">automated via strict validation rules</strong>.
             </p>
           </div>
         </div>
@@ -759,7 +759,7 @@ function Project2TechSlide() {
             <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4">
               <Database className="w-7 h-7 text-purple-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">2. The Data Sources</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">The Data Sources</h3>
             <p className="text-slate-300 text-sm leading-relaxed mb-3">
               <strong className="text-purple-400">Dataverse:</strong> For robust security roles and relational integrity.
             </p>
@@ -773,7 +773,7 @@ function Project2TechSlide() {
             <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
               <Cog className="w-7 h-7 text-blue-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">3. How I Modeled the Data</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">How I Modeled the Data</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
               Modeled strict validation logic directly in the schema: <span className="text-blue-400 font-mono text-xs italic">IF (Age &gt; 6 AND SpecialNeeds == False) THEN Ineligible</span>. Enforced via calculated columns and Power Fx.
             </p>
